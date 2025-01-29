@@ -5,13 +5,28 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --asidebg: #131B20;
+  --accentbg: #222c32;
+  --messagebg: #265b4c;
+  --inputbg: #2d3941;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #262524;
     --foreground: #ededed;
+
+    --asidebg: #131B20;
+    --accentbg: #222c32;
+    --messagebg: #265b4c;
+    --inputbg: #2d3941;
   }
+}
+
+html,
+body {
+  height: 100vh;
 }
 
 body {
