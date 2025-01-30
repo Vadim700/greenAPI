@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { cn } from '@/lib/utils';
 import React from 'react';
 
 interface Props {
@@ -8,7 +8,10 @@ interface Props {
 export const Header: React.FC<Props> = ({ className }) => {
   return (
     <header
-      className={classNames(className, 'flex items-center py-2.5 px-4 min-h-[64px] bg-accentbg text-3xl')}
+      className={cn(
+        className,
+        'flex items-center py-2.5 px-4 min-h-[64px] bg-accentbg text-3xl',
+      )}
     >
       Header
     </header>

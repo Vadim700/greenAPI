@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { cn } from '@/lib/utils';
 import React from 'react';
 
 interface Props {
@@ -6,5 +6,9 @@ interface Props {
 }
 
 export const ChatBody: React.FC<Props> = ({ className }) => {
-  return <div className={classNames(className, 'border-r border-accentbg bg-asidebg')}>Messages</div>;
+  return (
+    <div className={cn(className, 'border-r border-accentbg bg-asidebg')}>
+      Messages
+    </div>
+  );
 };
