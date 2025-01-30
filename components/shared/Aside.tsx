@@ -11,7 +11,7 @@ export const Aside: React.FC<Props> = ({ className }) => {
   return (
     <aside className={cn(className, 'border-r border-accentbg  bg-asidebg')}>
       <header className="flex items-center px-4 h-16 text-3xl">Чаты</header>
-      <Label>
+      <Label className=' bg-accentbg'>
         <Search />
         <SearchInput placeholder='Search...'/>
       </Label>

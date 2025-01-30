@@ -9,7 +9,10 @@ interface Props {
 export const Label: React.FC<Props> = ({ className, children }) => {
   return (
     <label
-      className={cn(className, 'flex items-center gap-2 min-h-9 px-3 mx-3 rounded-lg bg-accentbg')}
+      className={cn(
+        'flex items-center gap-2 min-h-9 px-3 mx-3 rounded-lg',
+        className,
+      )}
     >
       {children}
     </label>

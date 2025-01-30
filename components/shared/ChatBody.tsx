@@ -7,7 +7,7 @@ interface Props {
 
 export const ChatBody: React.FC<Props> = ({ className }) => {
   return (
-    <div className={cn(className, 'border-r border-accentbg bg-asidebg')}>
+    <div className={cn(className, 'grid place-content-center border-r border-accentbg bg-asidebg')}>
       Messages
     </div>
   );
