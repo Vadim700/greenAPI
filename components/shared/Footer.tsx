@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
-import { MessageForm } from '../ui/MessageInput';
+import { MessageForm } from '../ui/MessageForm';
 
 interface Props {
   className?: string;

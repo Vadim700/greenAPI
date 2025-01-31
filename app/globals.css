@@ -29,10 +29,21 @@
 html,
 body {
   height: 100vh;
+  scrollbar-gutter: stable;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.chatList::-webkit-scrollbar {
+  background-color: red
+}
+
+.chatList,
+.message-inner {
+  scrollbar-width: thin;
+  scrollbar-color: #222c32 #131B20;
 }
