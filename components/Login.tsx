@@ -2,16 +2,15 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useAppDispatch } from '@/lib/hooks';
+import { setCredentials } from '@/lib/features/authSlise';
 
 export const Login = () => {
-  const [idInstance, setIdInstance] = useState('');
-  const [apiTokenInstance, setApiTokenInstance] = useState('');
-  // const setCredentials = useAuthStore((state) => state.setCredentials);
+  const dispatch = useAppDispatch();
 
   const messageFormSchema = z.object({
-    instance: z.string().trim().min(1, { message: 'At least 1 character' }),
-    token: z.string().trim().min(1, { message: 'At least 1 character' }),
+    idInstance: z.string(),
+    apiTokenInstance: z.string(),
   });
 
   type AuthForm = z.infer<typeof messageFormSchema>;
@@ -19,13 +18,14 @@ export const Login = () => {
   const form = useForm<AuthForm>({
     resolver: zodResolver(messageFormSchema),
     defaultValues: {
-      instance: '',
-      token: '',
+      idInstance: '',
+      apiTokenInstance: '',
     },
   });
 
-  const onSubmit = (e: AuthForm) => {
-		console.log(e);
+  const onSubmit = (data: AuthForm) => {
+    dispatch(setCredentials(data));
+    form.reset();
   };
 
   return (
@@ -45,9 +45,9 @@ export const Login = () => {
             <input
               type="text"
               id="idInstance"
-              name="instance"
-              value={idInstance}
-              onChange={(e) => setIdInstance(e.target.value)}
+              {...form.register('idInstance')}
+              // value={idInstance}
+              // onChange={(e) => setIdInstance(e.target.value)}
               className="mt-1 block w-full h-10 px-4 rounded-md border border-black shadow-sm text-black focus:border-green-500 focus:ring-green-500"
             />
           </div>
@@ -61,10 +61,10 @@ export const Login = () => {
             <input
               type="password"
               id="apiTokenInstance"
-              name="token"
-              value={apiTokenInstance}
-              onChange={(e) => setApiTokenInstance(e.target.value)}
-              className="mt-1 block w-full h-10 px-4 rounded-md border border-black shadow-sm focus:border-green-500 focus:ring-green-500"
+              {...form.register('apiTokenInstance')}
+              // value={apiTokenInstance}
+              // onChange={(e) => setApiTokenInstance(e.target.value)}
+              className="mt-1 block w-full h-10 px-4 rounded-md border border-black shadow-sm text-black focus:border-green-500 focus:ring-green-500"
             />
           </div>
           <button

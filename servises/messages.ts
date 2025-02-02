@@ -1,5 +1,3 @@
-// import axios from 'axios';
-
 const BASE_URL = 'https://api.green-api.com';
 
 export const sendMessage = async (

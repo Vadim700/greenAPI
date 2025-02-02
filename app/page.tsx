@@ -1,7 +1,10 @@
+'use client';
 import { Chat } from '@/components/Chat';
-// import { Login } from '@/components/Login';
+import { Login } from '@/components/Login';
+import { useAppSelector } from '@/lib/hooks';
 
 export default function Home() {
-  return <Chat />;
-  // return <Login />;
+  const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
+
+  return isAuth ? <Chat /> : <Login />;
 }
