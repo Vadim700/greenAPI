@@ -10,8 +10,8 @@ export const Header: React.FC<Props> = ({ className }) => {
   return (
     <header
       className={cn(
+        'flex items-center gap-4 grid-rows-2 py-2.5 px-4 min-h-[64px] bg-accentbg',
         className,
-        'flex items-center gap-4 grid-rows-2 py-2.5 px-4 min-h-[64px] bg-accentbg ',
       )}
     >
       <div className="w-14 aspect-square grid place-content-center row-span-2 bg-[#6B7175] rounded-full">
