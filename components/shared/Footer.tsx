@@ -14,20 +14,16 @@ export const Footer: React.FC<Props> = ({ className }) => {
   const { idInstance, apiTokenInstance } = useAppSelector(
     (state) => state.auth,
   );
+  const user = useAppSelector((state) => state.user.user);
 
   const sendingMessage = async (values: { message: string }) => {
-    await sendMessage(
-      idInstance,
-      apiTokenInstance,
-      '79085728793',
-      values.message,
-    );
+    await sendMessage(idInstance, apiTokenInstance, user.phone, values.message);
 
     console.log(
       await sendMessage(
         idInstance,
         apiTokenInstance,
-        '79085728793',
+        user.phone,
         values.message,
       ),
       ' => ',

@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { ChatList } from './ChatList';
 import { useAppDispatch } from '@/lib/hooks';
 import { logout } from '@/lib/features/authSlice';
+import { useState } from 'react';
 
 interface Props {
   className?: string;
@@ -12,8 +13,13 @@ interface Props {
 
 export const Aside: React.FC<Props> = ({ className }) => {
   const dispatch = useAppDispatch();
+  const [filteredChats, setFilteredChats] = useState('');
 
   // const setAvatar = async () => getAvatar(instanse, token, '79085728793').then((i) => i.urlAvatar);
+
+  const onFilterChats = (value: string) => {
+    setFilteredChats(value);
+  };
 
   return (
     <aside className={cn(className, 'border-r border-accentbg  bg-asidebg')}>
@@ -30,9 +36,12 @@ export const Aside: React.FC<Props> = ({ className }) => {
       </header>
       <Label className=" bg-accentbg mb-4">
         <Search />
-        <SearchInput placeholder="Example: 79991234567" />
+        <SearchInput
+          placeholder="Example: 79991234567"
+          filterChats={onFilterChats}
+        />
       </Label>
-      <ChatList />
+      <ChatList fiteredChats={filteredChats} />
     </aside>
   );
 };

@@ -24,7 +24,7 @@ export const chatsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchChats.fulfilled, (state, { payload }) => {
-        state.chats = payload; // остановились тут
+        state.chats = payload;
       });
   },
 });

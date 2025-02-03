@@ -15,6 +15,13 @@ export interface Chat {
   name: string;
 }
 
+export interface User {
+  avatar: string;
+  phone: string;
+  stateInstance: string;
+  deviceId: string;
+}
+
 export interface AuthState {
   idInstance: string;
   apiTokenInstance: string;

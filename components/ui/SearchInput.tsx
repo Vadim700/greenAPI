@@ -1,7 +1,6 @@
 'use client';
-import { useAppSelector } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { checkWhatsapp } from '@/servises/user';
+// import { checkWhatsapp } from '@/servises/user';
 import React, { useState } from 'react';
 import { useDebounce } from 'react-use';
 
@@ -9,38 +8,30 @@ interface Props {
   className?: string;
   type?: string;
   placeholder?: string;
+  filterChats: (arg0: string) => void;
 }
 
 export const SearchInput: React.FC<Props> = ({
   className,
   type = 'text',
   placeholder,
+  filterChats,
 }) => {
   const [value, setValue] = useState('');
   const [isString, setIsString] = useState(false);
-  const { idInstance, apiTokenInstance } = useAppSelector(
-    (state) => state.auth,
-  );
   const [, setDebouncedValue] = useDebounce(
     () => {
-      if (value) {
-        if (isNaN(Number(value)) || value.length > 12) {
-          setIsString(true);
-        } else {
-          setIsString(false);
-          fetchCheckUser(value);
-        }
-        setDebouncedValue();
+      if (isNaN(Number(value)) || value.length > 12) {
+        setIsString(true); // if not a number, or length < 12 chars
+      } else {
+        setIsString(false);
+        filterChats(value);
       }
+      setDebouncedValue();
     },
     600,
     [value],
   );
-
-  const fetchCheckUser = async (value: string) => {
-    const data = await checkWhatsapp(idInstance, apiTokenInstance, value);
-    console.log(data);
-  };
 
   return (
     <div className="relative w-full">

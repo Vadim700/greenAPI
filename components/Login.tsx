@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppDispatch } from '@/lib/hooks';
 import { setCredentials } from '@/lib/features/authSlice';
+import { fetchUser } from '@/lib/thunks/userThunk';
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ export const Login = () => {
 
   const onSubmit = (data: AuthForm) => {
     dispatch(setCredentials(data));
+    dispatch(fetchUser(data));
     form.reset();
   };
 
@@ -46,8 +48,6 @@ export const Login = () => {
               type="text"
               id="idInstance"
               {...form.register('idInstance')}
-              // value={idInstance}
-              // onChange={(e) => setIdInstance(e.target.value)}
               className="mt-1 block w-full h-10 px-4 rounded-md border border-black shadow-sm text-black focus:border-green-500 focus:ring-green-500"
             />
           </div>
@@ -62,8 +62,6 @@ export const Login = () => {
               type="password"
               id="apiTokenInstance"
               {...form.register('apiTokenInstance')}
-              // value={apiTokenInstance}
-              // onChange={(e) => setApiTokenInstance(e.target.value)}
               className="mt-1 block w-full h-10 px-4 rounded-md border border-black shadow-sm text-black focus:border-green-500 focus:ring-green-500"
             />
           </div>
