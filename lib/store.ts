@@ -10,10 +10,12 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { authSlice } from './features/authSlise';
+import { authSlice } from './features/authSlice';
+import { chatsSlice } from './features/chatsSlice';
 
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
+  chats: chatsSlice.reducer,
 });
 
 const persistConfig = {

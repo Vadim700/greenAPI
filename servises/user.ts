@@ -26,3 +26,33 @@ export const getAvatar = async (
     console.log(e, 'Попоытка получить аватар провалилась :(');
   }
 };
+
+export const checkWhatsapp = async (
+  idInstance: string,
+  apiTokenInstance: string,
+  phoneNumber: string,
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/waInstance${idInstance}/checkWhatsapp/${apiTokenInstance}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phoneNumber,
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Проверьте введенные данные');
+    }
+
+    const data = response.json();
+    return data;
+  } catch (e) {
+    console.error(e, 'Не получилось проверить наличие WhatsApp у пользователя');
+  }
+};

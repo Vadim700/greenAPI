@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppDispatch } from '@/lib/hooks';
-import { setCredentials } from '@/lib/features/authSlise';
+import { setCredentials } from '@/lib/features/authSlice';
 
 export const Login = () => {
   const dispatch = useAppDispatch();

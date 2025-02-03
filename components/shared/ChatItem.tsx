@@ -15,7 +15,6 @@ export const ChatItem: React.FC<Props> = ({ id, name }) => {
       href={'#'}
       className={cn(
         'grid grid-cols-[50px_auto] gap-x-4 items-center grid-rows-2 hover:bg-actionbg max-h-20 pl-4',
-        // active && 'bg-actionbg',
       )}
     >
       <div className="grid place-content-center row-span-2 bg-[#6B7175] rounded-full aspect-square">

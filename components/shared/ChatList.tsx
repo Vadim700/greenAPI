@@ -1,47 +1,36 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ChatItem } from './ChatItem';
 import { cn } from '@/lib/utils';
-import { getChats } from '@/servises/chats';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { fetchChats } from '@/lib/thunks/chatsThunk';
 
 interface Props {
   className?: string;
-  token: string;
-  instanse: string;
 }
 
-type ChatBody = {
-  archive: boolean;
-  id: string;
-  notSpam: boolean;
-  ephemeralExpiration: number;
-  ephemeralSettingTimestamp: number;
-  name: string;
-};
-
-type ChatsList = ChatBody[];
-
-export const ChatList: React.FC<Props> = ({ className, token, instanse }) => {
-  const [chatsList, setChatsList] = useState<ChatsList>([]);
+export const ChatList: React.FC<Props> = ({ className }) => {
+  const dispatch = useAppDispatch();
+  const chaсрфе = useAppSelector((state) => state.chats.chats);
+  const { idInstance, apiTokenInstance } = useAppSelector(
+    (state) => state.auth,
+  );
 
   useEffect(() => {
-    const fetchChatsList = async () => {
-      const data = await getChats(instanse, token, '79085728793');
-      setChatsList(data);
-    };
-
-    fetchChatsList();
-  }, [instanse, token]);
+    dispatch(
+      fetchChats({ idInstance, apiTokenInstance, phoneNumber: '79085728793' }),
+    );
+  }, [apiTokenInstance, dispatch, idInstance]);
 
   return (
     <div className={cn('max-h-[746px] overflow-y-auto chatList', className)}>
-      {chatsList ? (
-        chatsList?.map((data) => (
+      {chaсрфе ? (
+        chaсрфе?.map((data) => (
           <ChatItem key={data.id} name={data.name} id={data.id} />
         ))
       ) : (
-        <p>Ooops...</p>
+        <p className="h-full grid place-content-center">Chat list is empty</p>
       )}
     </div>
   );

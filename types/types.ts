@@ -6,8 +6,13 @@ export interface Message {
 }
 
 export interface Chat {
-  phoneNumber: string;
-  messages: Message[];
+  archive: boolean;
+  id: string;
+  notSpam: boolean;
+  ephemeralExpiration: number;
+  ephemeralSettingTimestamp: number;
+  muteEndTime: number;
+  name: string;
 }
 
 export interface AuthState {
