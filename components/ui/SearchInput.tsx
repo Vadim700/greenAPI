@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-// import { checkWhatsapp } from '@/servises/user';
+import { X } from 'lucide-react';
 import React, { useState } from 'react';
 import { useDebounce } from 'react-use';
 
@@ -18,23 +18,17 @@ export const SearchInput: React.FC<Props> = ({
   filterChats,
 }) => {
   const [value, setValue] = useState('');
-  const [isString, setIsString] = useState(false);
   const [, setDebouncedValue] = useDebounce(
     () => {
-      if (isNaN(Number(value)) || value.length > 12) {
-        setIsString(true); // if not a number, or length < 12 chars
-      } else {
-        setIsString(false);
-        filterChats(value);
-      }
+      filterChats(value);
       setDebouncedValue();
     },
-    600,
+    400,
     [value],
   );
 
   return (
-    <div className="relative w-full">
+    <div className="flex w-full">
       <input
         type={type}
         className={cn(className, 'w-full bg-transparent border-0 outline-none')}
@@ -42,9 +36,11 @@ export const SearchInput: React.FC<Props> = ({
         onChange={(e) => setValue(e.currentTarget.value)}
         placeholder={placeholder}
       />
-      <span className="absolute right-0 -bottom-8 text-sm">
-        {isString && 'incorrect phone number'}
-      </span>
+      {value && (
+        <button className="hover:text-red-700" onClick={() => setValue('')}>
+          <X />
+        </button>
+      )}
     </div>
   );
 };

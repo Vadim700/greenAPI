@@ -35,3 +35,31 @@ export const getChats = async (
     console.log(e, 'Не получилось загрузить список чатов');
   }
 };
+
+export const getChatHystory = async (
+  idInstance: string,
+  apiTokenInstance: string,
+  chatId: string,
+  count: number = 0,
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/waInstance${idInstance}/getChatHistory/${apiTokenInstance}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          chatId,
+          count,
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Не получилось сделать запрос за историей чатов');
+    }
+
+    return response.json();
+  } catch (e) {
+    console.log(e, 'Не получилось получить историю чатов');
+  }
+};

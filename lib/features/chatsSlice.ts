@@ -1,6 +1,6 @@
 import { Chat } from '@/types/types';
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchChats } from '../thunks/chatsThunk';
+import { fetchContacts } from '../thunks/chatsThunk';
 
 interface ChatState {
   chats: Chat[];
@@ -20,10 +20,10 @@ export const chatsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchChats.pending, (state) => {
+      .addCase(fetchContacts.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchChats.fulfilled, (state, { payload }) => {
+      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.chats = payload;
       });
   },

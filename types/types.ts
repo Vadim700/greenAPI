@@ -20,6 +20,8 @@ export interface User {
   phone: string;
   stateInstance: string;
   deviceId: string;
+  name: string;
+  id: string;
 }
 
 export interface AuthState {
@@ -28,4 +30,11 @@ export interface AuthState {
   isAuthenticated: boolean;
   setCredentials: (idInstance: string, apiTokenInstance: string) => void;
   logout: () => void;
+}
+
+export interface UserState {
+  user: User;
+  loading: boolean;
+  error: string | null;
+  currentUser: User;
 }

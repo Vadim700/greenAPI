@@ -3,28 +3,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL = 'https://api.green-api.com';
 
-export const fetchChats = createAsyncThunk<
-  Chat[],
-  { idInstance: string; apiTokenInstance: string; phoneNumber: string }, // Параметры, которые передаем в thunk
+export const fetchContacts = createAsyncThunk<
+  Chat[], // тип возвращаемого значения
+  { idInstance: string; apiTokenInstance: string }, // Параметры, которые передаем в thunk
   { rejectValue: string }
 >(
   'chats/getChats',
-  async (
-    { idInstance, apiTokenInstance, phoneNumber },
-    { rejectWithValue },
-  ) => {
+  async ({ idInstance, apiTokenInstance }, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/waInstance${idInstance}/getChats/${apiTokenInstance}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            chatId: `${phoneNumber}@c.us`,
-          }),
-        },
+        `${BASE_URL}/waInstance${idInstance}/getContacts/${apiTokenInstance}`,
       );
 
       if (response.status === 429) {

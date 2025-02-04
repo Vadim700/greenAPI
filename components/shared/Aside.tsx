@@ -37,7 +37,7 @@ export const Aside: React.FC<Props> = ({ className }) => {
       <Label className=" bg-accentbg mb-4">
         <Search />
         <SearchInput
-          placeholder="Example: 79991234567"
+          placeholder="Search..."
           filterChats={onFilterChats}
         />
       </Label>
