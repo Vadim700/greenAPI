@@ -29,8 +29,6 @@ export const Footer: React.FC<Props> = ({ className }) => {
       ' => ',
       values.message,
     );
-
-    // console.log(await getAvatar(instanse, token, '79085728793'));
   };
   return (
     <footer

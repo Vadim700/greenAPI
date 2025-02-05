@@ -14,7 +14,7 @@ export const Chat: React.FC<Props> = ({ className }) => {
     <main
       className={cn(
         className,
-        'h-[90vh] min-h-[550px] max-w-[90vw] grid grid-cols-[1fr_2fr] grid-rows-[auto_1fr] overflow-hidden rounded-3xl',
+        'h-[90vh] min-h-[550px] w-[90vw] grid grid-cols-[1fr_2fr] grid-rows-[auto_1fr] overflow-hidden rounded-3xl',
       )}
     >
       <Aside className="row-span-3" />

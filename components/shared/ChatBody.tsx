@@ -21,8 +21,8 @@ export const ChatBody: React.FC<Props> = ({ className }) => {
           <article
             key={message.chatId + index}
             className={cn(
-              'max-w-[75%] bg-messagebg p-2 pb-3 inline-block rounded-md rounded-t-none rounded-s-md',
-              message.type === 'outgoing' ? 'justify-end' : '',
+              'max-w-[75%] bg-messagebg p-2 pb-3 inline-block rounded-md rounded-t-none empty:p-0',
+              message.type === 'outgoing' ? 'self-end rounded-l-md' : 'rounded-r-md',
             )}
           >
             {message.textMessage}

@@ -38,6 +38,8 @@ export const userSlice = createSlice({
         name: action.payload.name,
         id: action.payload.id,
       };
+
+      console.log(state.currentUser, '>>> cu in redux');
     },
   },
 

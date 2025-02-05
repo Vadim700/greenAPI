@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface MessageInterface {
-	chatId: string;
+  chatId: string;
   type: string;
   textMessage: string;
   timestamp: number;
@@ -21,8 +21,7 @@ export const messageSlice = createSlice({
   initialState,
   reducers: {
     setChatHistory: (state, { payload }) => {
-			state.messanges = payload;
-      console.log(payload, '>>> payload');
+      state.messanges = payload?.reverse();
     },
   },
 });

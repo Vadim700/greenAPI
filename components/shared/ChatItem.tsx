@@ -19,16 +19,17 @@ export const ChatItem: React.FC<Props> = ({ name, id }) => {
   const { idInstance, apiTokenInstance } = useAppSelector(
     (state) => state.auth,
   );
+  const user = useAppSelector((state) => state.user.currentUser.name);
 
   const onClickChat = () => {
+    dispatch(setSelectedUser({ name, id }));
+    console.log(user, '>>> user in Component');
     const getChat = async () => {
       const data = await getChatHystory(idInstance, apiTokenInstance, id, 30);
       dispatch(setChatHistory(data));
       setMessages(data);
     };
     getChat();
-
-    dispatch(setSelectedUser({ name, id }));
   };
 
   return (
@@ -47,7 +48,8 @@ export const ChatItem: React.FC<Props> = ({ name, id }) => {
         {name || id}
       </span>
       <span className="overflow-hidden text-ellipsis text-nowrap pb-4">
-        Строка
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis,
+        molestiae.
       </span>
     </Link>
   );
