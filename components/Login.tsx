@@ -5,8 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppDispatch } from '@/lib/hooks';
 import { setCredentials } from '@/lib/features/authSlice';
 import { fetchUser } from '@/lib/thunks/userThunk';
+import { useState } from 'react';
+import { Loader } from 'lucide-react';
 
 export const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
 
   const messageFormSchema = z.object({
@@ -24,10 +27,18 @@ export const Login = () => {
     },
   });
 
-  const onSubmit = (data: AuthForm) => {
-    dispatch(setCredentials(data));
-    dispatch(fetchUser(data));
-    form.reset();
+  const onSubmit = async (data: AuthForm) => {
+    setIsLoading(true);
+    try {
+      dispatch(setCredentials(data));
+      dispatch(fetchUser(data));
+      form.reset();
+    } catch (e) {
+      console.log(e);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -69,7 +80,7 @@ export const Login = () => {
             type="submit"
             className="w-full bg-[#00a884] text-white py-2 px-4 rounded-md hover:bg-[#008f6f] transition-colors"
           >
-            Login
+            {isLoading ? <Loader /> : 'Autharisation'}
           </button>
         </form>
       </div>

@@ -35,6 +35,7 @@ export const checkWhatsapp = async (
   try {
     const response = await fetch(
       `${BASE_URL}/waInstance${idInstance}/checkWhatsapp/${apiTokenInstance}`,
+
       {
         method: 'POST',
         headers: {
