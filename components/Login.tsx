@@ -7,6 +7,7 @@ import { setCredentials } from '@/lib/features/authSlice';
 import { fetchUser } from '@/lib/thunks/userThunk';
 import { useState } from 'react';
 import { Loader } from 'lucide-react';
+import Link from 'next/link';
 
 export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +43,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen  flex items-center justify-center p-4">
+    <div className="min-h-screen w-screen  flex flex-col gap-4 items-center justify-center p-4">
       <div className="bg-white rounded-lg p-8 w-full max-w-md shadow-lg">
         <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Authorisation
@@ -83,6 +84,17 @@ export const Login = () => {
             {isLoading ? <Loader /> : 'Autharisation'}
           </button>
         </form>
+      </div>
+      <div className="">
+        Firstly, create your own instance in
+        <br />
+        <Link
+          href={'https://console.green-api.com/instanceList'}
+          target="_blank"
+          className="hover:underline"
+        >
+          https://console.green-api.com/instanceList
+        </Link>
       </div>
     </div>
   );
